@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int main () { 
-    // Variáveis
+int main () {
     char nome[50];
     char sexo;
     char cpf[13];
