@@ -6,9 +6,9 @@ struct Pessoa {
     char cpf[13];
     float peso, altura;
     int dia, mes, ano;
-}
+};
 
-int main () {
+    int main() {
 
     struct Pessoa strPessoa;
     
