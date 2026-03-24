@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "caixa.h"
+#include <stdlib.h>
 
 struct Caixa {
     int valor;
