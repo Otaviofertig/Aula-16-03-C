@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct DNode_ DNode {
+typedef struct DNode_ DNode;
+
+
+struct DNode_ {
     int info;
     DNode *next;
     DNode *previous;
@@ -25,4 +28,13 @@ int main () {
 
     node3->previous = node2;
     node3->next = NULL;
+
+    printf("Navegando para o futuro (HEAD -> TAIL): \n");
+    DNode *atual = node1;
+    while (atual != NULL) {
+        printf("%d -> , atual->info");
+        atual = atual->next;
+    }
+    printf("NULL\n");
+
 }
