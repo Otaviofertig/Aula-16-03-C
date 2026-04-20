@@ -32,9 +32,20 @@ int main () {
     printf("Navegando para o futuro (HEAD -> TAIL): \n");
     DNode *atual = node1;
     while (atual != NULL) {
-        printf("%d -> , atual->info");
+        printf("%d -> " , atual->info);
         atual = atual->next;
     }
     printf("NULL\n");
 
+    printf("Navegando para o passado (TAIL -> HEAD): \n");
+    atual = node3;
+    while (atual != NULL) {
+        printf("%d -> ", atual->info);
+        atual = atual->previous;
+    }
+    printf("NULL\n");
+
+    free(node1);
+    free(node2);    
+    free(node3);
 }
