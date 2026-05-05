@@ -73,8 +73,7 @@ int main() {
         {7, "Fernanda Reis", "7777-7777"},
         {2, "Daniel Alves", "2222-2222"},
         {9, "Paula Moraes", "9999-9999"},
-        {4, "Joao Santos", "4444-4444"},
-        {6, "Lucas Pereira", "6666-6666"}
+        {4, "Joao Santos", "4444-4444"}
     };
     
     int tamanho = 10;
