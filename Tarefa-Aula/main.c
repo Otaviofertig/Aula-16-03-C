@@ -7,43 +7,59 @@ typedef struct {
     char telefone[15];
 } Cliente;
 
-void insertionSort(Cliente vetor[], int tamanho, int *comparacoes, int *trocas) {
+
+void insertionSortCodigo(Cliente vetor[], int tamanho) {
+    for(int i = 1; i < tamanho; i++) {
+        Cliente valor_atual = vetor[i];
+        int j = i - 1;
+    
+        while(j >= 0 && vetor[j].codigo > valor_atual.codigo) {
+            vetor[j + 1] = vetor[j];
+            j--;
+        }
+        
+        vetor[j + 1] = valor_atual;
+    }
+}
+
+void insertionSortNome(Cliente vetor[], int tamanho) {
     for(int i = 1; i < tamanho; i++) {
         Cliente valor_atual = vetor[i];
         int j = i - 1;
 
-        while(j >= 0) {
-            (*comparacoes)++;
-            
-            if(strcmp(vetor[j].nome, valor_atual.nome) > 0) {
-                vetor[j + 1] = vetor[j];
-                (*trocas)++;
-                j--;
-            } else {
-                break;
-            }
+       
+        while(j >= 0 && strcmp(vetor[j].nome, valor_atual.nome) > 0) {
+            vetor[j + 1] = vetor[j];
+            j--;
         }
         
         vetor[j + 1] = valor_atual;
-        if(j + 1 != i) {
-            (*trocas)++;
-        }
     }
 }
 
+
 void buscaSequencial(Cliente vetor[], int tamanho, char telefoneProcurado[]) {
     int encontrado = 0;
+    
     for(int i = 0; i < tamanho; i++) {
         
         if(strcmp(vetor[i].telefone, telefoneProcurado) == 0) {
             printf("-> Cliente Encontrado! Codigo: %d | Nome: %s\n\n", vetor[i].codigo, vetor[i].nome);
             encontrado = 1;
-            break;
+            break; 
         }
     }
     if(encontrado == 0) {
         printf("-> Telefone %s nao encontrado.\n\n", telefoneProcurado);
     }
+}
+
+
+void imprimirClientes(Cliente vetor[], int tamanho) {
+    for(int i = 0 ; i < tamanho; i++) {
+        printf("Codigo: %02d | Nome: %-15s | Tel: %s\n", vetor[i].codigo, vetor[i].nome, vetor[i].telefone);
+    }
+    printf("\n");
 }
 
 int main() {
@@ -62,25 +78,21 @@ int main() {
     };
     
     int tamanho = 10;
-    int comparacoes = 0;
-    int trocas = 0;
 
-    
-    insertionSort(clientes, tamanho, &comparacoes, &trocas);
+    printf("--- 1. VETOR ORIGINAL DESORDENADO ---\n");
+    imprimirClientes(clientes, tamanho);
 
-    printf("--- ORDENADO POR NOME (USANDO STRCMP) ---\n");
-    for(int i = 0 ; i < tamanho; i++) {
-        printf("Codigo: %02d | Nome: %-15s | Tel: %s\n", clientes[i].codigo, clientes[i].nome, clientes[i].telefone);
-    }
-    printf("\n");
+    printf("--- 2. ORDENADO POR CODIGO (REQUISITO 3) ---\n");
+    insertionSortCodigo(clientes, tamanho);
+    imprimirClientes(clientes, tamanho);
 
-    printf("N de comparacoes: %d\n", comparacoes);
-    printf("N de trocas: %d\n\n", trocas);
+    printf("--- 3. ORDENADO POR NOME (DESAFIO AVANCADO) ---\n");
+    insertionSortNome(clientes, tamanho);
+    imprimirClientes(clientes, tamanho);
 
-    printf("--- BUSCA SEQUENCIAL ---\n");
+    printf("--- 4. BUSCA SEQUENCIAL (DESAFIO AVANCADO) ---\n");
     printf("Procurando '7777-7777'...\n");
     buscaSequencial(clientes, tamanho, "7777-7777");
 
     return 0;
 }
-
