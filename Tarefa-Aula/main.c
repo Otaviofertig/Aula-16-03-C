@@ -1,23 +1,20 @@
 #include <stdio.h>
 #include <string.h> 
 
-// 1. Criação da struct Cliente
 typedef struct {
     int codigo;
     char nome[50];
     char telefone[15];
 } Cliente;
 
-// 2. Seu Insertion Sort EXATAMENTE com a sua lógica base
 void insertionSort(Cliente vetor[], int tamanho, int *comparacoes, int *trocas) {
     for(int i = 1; i < tamanho; i++) {
-        Cliente valor_atual = vetor[i]; // Agora guardamos a struct inteira
+        Cliente valor_atual = vetor[i];
         int j = i - 1;
 
         while(j >= 0) {
             (*comparacoes)++;
             
-            // Fiel à sua estrutura, apenas usando strcmp no lugar do sinal ">"
             if(strcmp(vetor[j].nome, valor_atual.nome) > 0) {
                 vetor[j + 1] = vetor[j];
                 (*trocas)++;
@@ -32,10 +29,12 @@ void insertionSort(Cliente vetor[], int tamanho, int *comparacoes, int *trocas) 
             (*trocas)++;
         }
     }
-}void buscaSequencial(Cliente vetor[], int tamanho, char telefoneProcurado[]) {
+}
+
+void buscaSequencial(Cliente vetor[], int tamanho, char telefoneProcurado[]) {
     int encontrado = 0;
     for(int i = 0; i < tamanho; i++) {
-        // strcmp retorna 0 quando os textos são idênticos
+        
         if(strcmp(vetor[i].telefone, telefoneProcurado) == 0) {
             printf("-> Cliente Encontrado! Codigo: %d | Nome: %s\n\n", vetor[i].codigo, vetor[i].nome);
             encontrado = 1;
@@ -48,7 +47,7 @@ void insertionSort(Cliente vetor[], int tamanho, int *comparacoes, int *trocas) 
 }
 
 int main() {
-    // Instanciando o vetor de clientes desordenado
+    
     Cliente clientes[10] = {
         {8, "Marcos Silva", "8888-8888"},
         {3, "Ana Costa", "3333-3333"},
@@ -66,7 +65,7 @@ int main() {
     int comparacoes = 0;
     int trocas = 0;
 
-    // Fiel à sua chamada de função com ponteiros
+    
     insertionSort(clientes, tamanho, &comparacoes, &trocas);
 
     printf("--- ORDENADO POR NOME (USANDO STRCMP) ---\n");
